@@ -22,7 +22,7 @@ def add_wallet(wallet, user_id, user_name, date):
 
 def get_wallet(user_id):
     user_id = str(user_id)
-    doc_ref = db.collection(COLLECTION).document('237063450646282241')
+    doc_ref = db.collection(COLLECTION).document(user_id)
     doc = doc_ref.get()
     if doc.exists:
         return(doc.to_dict())
@@ -31,8 +31,8 @@ def get_wallet(user_id):
 
 def update_wallet(wallet_address, user_id, date):
     user_id = str(user_id)
-    doc_ref = db.collection(COLLECTION).document('237063450646282241')
-    doc_ref.update({"wallet":wallet_address, "date":date})
+    doc_ref = db.collection(COLLECTION).document(user_id)
+    doc_ref.update({"wallet":wallet_address, "last_updated":date})
     return (1)   
 
 def db_export_csv():
